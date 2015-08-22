@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div ng-controller="HomeController">
+    {{Message}}
+    <div>
+        @ViewBag.DemoID
+    </div>
+</div>
+
+<div ng-controller="HomeController">
+    <h1>Total todos: {{ getTotalTodos() }}</h1>
+    <ul class="unstyled">
+        <li ng-repeat="todo in todos">
+            <input type="checkbox" ng-model="todo.done"> <span class="completed-{{todo.done}}">{{todo.task}}</span> <span class="glyphicon glyphicon-trash" ng-click="removeTask($index)"></span>
+        </li>
+    </ul>
+    <form class="form-horizontal">
+        <input ng-model="newTaskText">
+        <button class="btn" ng-click="addTodo()"><i class="icon-plus"></i>Add</button>
+    </form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
