@@ -46,27 +46,5 @@ namespace ToDoList.Controllers
             }
             
         }
-
-        [HttpDelete]
-        public HttpResponseMessage DeleteListItem(int id)
-        {
-            ToDoListEntities dc = new ToDoListEntities();
-            ListItem item = dc.ListItems.Find(id);
-
-            if (item == null)
-            {
-                return new HttpResponseMessage(System.Net.HttpStatusCode.NotFound);
-            }
-            dc.ListItems.Remove(item);
-            try
-            {
-                dc.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
-        }
     }
 }
