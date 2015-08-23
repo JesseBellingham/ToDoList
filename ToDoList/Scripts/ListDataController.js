@@ -26,13 +26,27 @@ ToDoList.controller('ListDataController', ['$scope', '$http', function TodoCtrl(
     $scope.GetTotalTodos = function () {
         return $scope.todos.length;
     };
+
     $scope.RemoveTask = function (i) {
         $scope.todos.remove(i);
     }
+
     $scope.AddTodo = function () {
         $scope.todos.push({ task: $scope.newTaskText, done: false });
-        $scope.newTaskText = "";
-    };
+        $scope.newItem = $scope.newTaskText;
+        $http({
+            method: 'POST',
+            url: '/Data/PostListItem',
+            //data: { newItem: JSON.stringify($scope.newItem) },
+            data: {"ItemText": $scope.newItem},
+            headers: { 'Content-Type': 'application/JSON' }
+        }).
+        success(function (data) {
+            $scope.status = "Item saved";
+            $scope.newTaskText = "";
+        })        
+    }    
+
     Array.prototype.remove = function (from, to) {
         var rest = this.slice((to || from) + 1 || this.length);
         this.length = from < 0 ? this.length + from : from;

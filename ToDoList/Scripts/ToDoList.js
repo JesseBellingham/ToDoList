@@ -19,7 +19,7 @@ ToDoList.controller('HomeController', function TodoCtrl($scope) {
         $scope.todos.remove(i);
     }
     $scope.AddTodo = function () {
-        $scope.todos.push({ task: $scope.newTaskText, done: false });
+        $scope.newItem = $scope.todos.push({ task: $scope.newTaskText, done: false });
         $scope.newTaskText = "";
     };
     Array.prototype.remove = function (from, to) {

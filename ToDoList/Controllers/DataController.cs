@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ToDoList.Models;
+using System.Net.Http;
 
 namespace ToDoList.Controllers
 {
@@ -19,7 +20,31 @@ namespace ToDoList.Controllers
                 var li = (dc.ListItems.ToList());
                 return new JsonResult { Data = li, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
-            //return new JsonResult { Data = "Failed", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        [HttpPost]
+        public HttpResponseMessage PostListItem(ListItem li)
+        {
+            if (li == null)
+            {
+                return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
+            }
+            
+            Console.WriteLine(li);
+
+            ToDoListEntities dc = new ToDoListEntities();
+            dc.ListItems.Add(li);
+            try
+            {
+                dc.SaveChanges();
+                return new HttpResponseMessage(System.Net.HttpStatusCode.Created);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
+            }
+            
         }
     }
 }
