@@ -12,13 +12,13 @@ ToDoList.controller('HomeController', function TodoCtrl($scope) {
         { task: 'Task 2', done: false },
         { task: 'Task 3', done: false }
     ];
-    $scope.getTotalTodos = function () {
+    $scope.GetTotalTodos = function () {
         return $scope.todos.length;
     };
-    $scope.removeTask = function (i) {
+    $scope.RemoveTask = function (i) {
         $scope.todos.remove(i);
     }
-    $scope.addTodo = function () {
+    $scope.AddTodo = function () {
         $scope.todos.push({ task: $scope.newTaskText, done: false });
         $scope.newTaskText = "";
     };

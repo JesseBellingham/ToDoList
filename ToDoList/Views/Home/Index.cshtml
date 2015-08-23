@@ -3,23 +3,22 @@
 }
 
 
-<div ng-controller="HomeController">
-    {{Message}}
-    <div>
-        @ViewBag.DemoID
-    </div>
-</div>
-
-<div ng-controller="HomeController">
-    <h1>Total todos: {{ getTotalTodos() }}</h1>
+<div ng-controller="ListDataController">
+    <h1>Total todos: {{ GetTotalTodos() }}</h1>
     <ul class="unstyled">
-        <li ng-repeat="todo in todos">
-            <input type="checkbox" ng-model="todo.done"> <span class="completed-{{todo.done}}">{{todo.task}}</span> <span class="glyphicon glyphicon-trash" ng-click="removeTask($index)"></span>
+        <li ng-repeat="todo in todos">{{ todo.ItemText }}
+            <input type="checkbox" ng-model="todo.done"> <span class="completed-{{todo.done}}">{{todo.task}}</span> <span class="glyphicon glyphicon-trash" ng-click="RemoveTask($index)"></span>
         </li>
     </ul>
     <form class="form-horizontal">
         <input ng-model="newTaskText">
-        <button class="btn" ng-click="addTodo()"><i class="icon-plus"></i>Add</button>
+        <button class="btn" ng-click="AddTodo()"><i class="icon-plus"></i>Add</button>
     </form>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+<div ng-controller="ListDataController">
+    <h2>{{  }}</h2>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/ListDataController.js"></script>
+}
