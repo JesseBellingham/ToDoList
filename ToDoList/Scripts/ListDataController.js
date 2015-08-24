@@ -28,6 +28,7 @@ ToDoList.controller('ListDataController', ['$scope', '$http', function TodoCtrl(
     };
 
     $scope.RemoveTask = function (i) {
+        $scope.todos.DeleteTodo(i);
         $scope.todos.remove(i);
     }
 
@@ -37,7 +38,6 @@ ToDoList.controller('ListDataController', ['$scope', '$http', function TodoCtrl(
         $http({
             method: 'POST',
             url: '/Data/PostListItem',
-            //data: { newItem: JSON.stringify($scope.newItem) },
             data: {"ItemText": $scope.newItem},
             headers: { 'Content-Type': 'application/JSON' }
         }).
@@ -45,7 +45,21 @@ ToDoList.controller('ListDataController', ['$scope', '$http', function TodoCtrl(
             $scope.status = "Item saved";
             $scope.newTaskText = "";
         })        
-    }    
+    }
+
+    $scope.DeleteTodo = function (itemId) {
+        $http({
+            method: 'DELETE',
+            url: '/Data/DeleteListItem' + itemId
+        })
+        .success(function (data) {
+            $scope.todos.remove(itemId);
+            $scope.status = "Item deleted";
+        })
+        .error(function (error) {
+            $scope.status = "Item not deleted: " + error.message;
+        });
+    }
 
     Array.prototype.remove = function (from, to) {
         var rest = this.slice((to || from) + 1 || this.length);
