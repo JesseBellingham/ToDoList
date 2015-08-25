@@ -4,6 +4,7 @@
     <EntitySetMapping Name="ListItems">
       <EntityTypeMapping TypeName="ToDoListModel.ListItem">
         <MappingFragment StoreEntitySet="ListItems">
+          <ScalarProperty Name="ItemDone" ColumnName="ItemDone" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ItemText" ColumnName="ItemText" />
         </MappingFragment>

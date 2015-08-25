@@ -6,6 +6,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ItemText" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ItemDone" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityContainer Name="ToDoListEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ListItems" EntityType="Self.ListItem" />

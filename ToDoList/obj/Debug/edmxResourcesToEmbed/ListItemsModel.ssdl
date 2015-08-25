@@ -6,6 +6,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ItemText" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ItemDone" Type="bit" Nullable="false" />
   </EntityType>
   <EntityContainer Name="ToDoListModelStoreContainer">
     <EntitySet Name="ListItems" EntityType="Self.ListItems" Schema="dbo" store:Type="Tables" />

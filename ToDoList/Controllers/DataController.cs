@@ -18,7 +18,9 @@ namespace ToDoList.Controllers
             using (ToDoListEntities dc = new ToDoListEntities())
             {
                 var li = (dc.ListItems.ToList());
-                return new JsonResult { Data = li, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                
+                Console.WriteLine(li);
+                return new JsonResult { Data = li, JsonRequestBehavior = JsonRequestBehavior.AllowGet };                
             }
         }
 
@@ -79,6 +81,37 @@ namespace ToDoList.Controllers
                 return new HttpResponseMessage(System.Net.HttpStatusCode.NotFound);
             }
             _li.ItemText = li.ItemText;
+
+            try
+            {
+                dc.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
+            }
+            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+        }
+
+        [HttpPut]
+        public HttpResponseMessage UpdateListItemDone(ListItem li)
+        {
+            ToDoListEntities dc = new ToDoListEntities();
+            ListItem _li = dc.ListItems.Find(li.Id);
+
+            if (_li == null)
+            {
+                return new HttpResponseMessage(System.Net.HttpStatusCode.NotFound);
+            }
+
+            if (_li.ItemDone == false)
+            {
+                _li.ItemDone = true;
+            } else
+            {
+                _li.ItemDone = false;
+            }
 
             try
             {

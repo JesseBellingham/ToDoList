@@ -16,5 +16,6 @@ namespace ToDoList
     {
         public int Id { get; set; }
         public string ItemText { get; set; }
+        public bool ItemDone { get; set; }
     }
 }
