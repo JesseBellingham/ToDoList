@@ -205,8 +205,10 @@
     <Content Include="App_Data\ToDoList_log.ldf">
       <DependentUpon>ToDoList.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\ball.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\slider.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -224,8 +226,7 @@
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap-slider.js" />
     <EntityDeploy Include="ListItemsModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ListItemsModel.Designer.cs</LastGenOutput>

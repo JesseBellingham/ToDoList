@@ -2,44 +2,50 @@
     ViewBag.Title = "To-do List";
 }
 
-
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/ball.css" />
+</head>
 <div ng-controller="ListDataController">
-    <div class="row">
-        <div class="col-md-4">
-            <h1>Total todos: {{ GetTotalTodos() }}</h1>
-            <ul class="unstyled">
-                <li ng-repeat="todo in todos">
-                    <span class="completed-{{todo.ItemDone}}">{{todo.ItemText}}</span> <input type="checkbox" ng-change="UpdateTodoDone($index)" ng-model="todo.ItemDone"> <span class="glyphicon glyphicon-trash" ng-click="RemoveTask({{todo.Id}})"></span>
-                </li>
-            </ul>
-            <form class="form-horizontal">
-                <input ng-model="newTaskText">
-                <button class="btn" ng-click="AddTodo()"><span class="glyphicon glyphicon-plus"></span> Add</button>
-            </form>
-        </div>
-        <div class="spacer">
+    <div class="container">
+        <div class="row">
             <div class="col-md-4">
-                <input ng-model="reminderTime" />
-                <button class="btn" ng-click="StartTimer()"><span class="glyphicon glyphicon-time"/> Add Reminder</button>                
+                <h1>Total todos: {{ GetTotalTodos() }}</h1>
+                <ul class="unstyled">
+                    <li ng-repeat="todo in todos">
+                        <span class="completed-{{todo.ItemDone}}">{{todo.ItemText}}</span> <input type="checkbox" ng-change="UpdateTodoDone($index)" ng-model="todo.ItemDone"> <span class="glyphicon glyphicon-trash" ng-click="RemoveTask({{todo.Id}})"></span>
+                    </li>
+                </ul>
+                <form class="form-horizontal">
+                    <p>New task: </p>
+                    <input ng-model="newTaskText">
+                    <button class="btn" ng-click="AddTodo()"><span class="glyphicon glyphicon-plus"></span> Add</button><br />
+                    <p>Importance: </p>
+                </form>
             </div>
             <div class="col-md-4">
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                        60%
+                <div class="spacer">
+                    <input ng-model="reminderTime" />
+                    <button class="btn" ng-click="StartTimer(reminderTime)"><span class="glyphicon glyphicon-time" /> Add Reminder</button>
+                </div>
+                <div class="col-md-4">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                            60%
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>        
-    </div>
-    <div class="row">
-        <div class="col-md-4">            
         </div>
-        <div class="col-md-4">
-            
+        <div class="row">
+            <div class="col-md-12">
+                <section class="stage">
+                    <div class="move">
+                        <figure ng-repeat="todo in todos" class="ball bubble">{{todo.ItemText}}<span class="shadow"></span></figure>
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
-    
-    
 </div>
 
 @section scripts{
