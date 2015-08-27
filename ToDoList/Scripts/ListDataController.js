@@ -32,6 +32,31 @@ ToDoList.controller('ListDataController', ['$scope', '$http', function TodoCtrl(
         return $scope.todos.length;
     };
 
+    $scope.RandomizeBubbles = function (Id) {       
+        // There are only 8 different text bubble classes
+        // This function is to randomly assign each div to a class based on the id of the todo
+        // It only seems to work for certain id #'s though
+        if (Id < 9) {
+            return Id;
+        } else {
+            $scope.newNum = Id;
+            while ($scope.newNum > 8) {
+                $scope.newNum /= 2;
+            }           
+        }
+        return $scope.newNum;
+        
+        //return $scope.randBubbles = Math.floor((Math.random() * 8) + 1);
+
+        /*if ($scope.bubblesArray.indexOf($scope.randBubbles) = -1) {
+            return $scope.randBubbles;
+        } else {
+            $scope.RandomizeBubbles();
+        }
+
+        return 0;*/
+    };
+
     $scope.RemoveTask = function (Id) {
         $scope.todos.DeleteTodo(Id);
         $scope.todos.remove(Id);
@@ -51,7 +76,7 @@ ToDoList.controller('ListDataController', ['$scope', '$http', function TodoCtrl(
             $scope.newTaskText = "";
             $scope.todos.push({ task: $scope.newItem, done: false });
         })
-    }
+    }    
 
     $scope.UpdateTodoDone = function (itemId) {
         $http({
@@ -82,9 +107,13 @@ ToDoList.controller('ListDataController', ['$scope', '$http', function TodoCtrl(
     }    
 
     $scope.StartTimer = function (reminderTime) {
-        window.setTimeout(function () {
+        $scope.timer = window.setTimeout(function () {
             alert("You have " + $scope.todos.length + " todos waiting.");
-        }, reminderTime);
+        }, (reminderTime * 1000)* 60);
+    }
+
+    $scope.StopTimer = function () {
+        window.clearTimeout($scope.timer);
     }
 
     Array.prototype.remove = function (from, to) {

@@ -3,7 +3,8 @@
 }
 
 <head>
-    <link rel="stylesheet" type="text/css" href="~/Content/ball.css" />
+    <!--<link rel="stylesheet" type="text/css" href="~/Content/ball.css" />-->
+    <link rel="stylesheet" type="text/css" href="~/Content/bubbles.css" />
 </head>
 <div ng-controller="ListDataController">
     <div class="container">
@@ -22,27 +23,15 @@
                     <p>Importance: </p>
                 </form>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4">                
+                <div class="bubble_wrap">
+                    <div ng-repeat="todo in todos" class="bubbles b{{ RandomizeBubbles(todo.Id) }} completed-{{todo.ItemDone}}">{{todo.ItemText}}</div>
+                </div>
                 <div class="spacer">
-                    <input ng-model="reminderTime" />
+                    <input type="range" min="5" max="90" step="5" ng-model="reminderTime" /><p>{{reminderTime}} minutes</p>
                     <button class="btn" ng-click="StartTimer(reminderTime)"><span class="glyphicon glyphicon-time" /> Add Reminder</button>
+                    <button class="btn" ng-click="StopTimer()"><span class="glyphicon glyphicon-remove" /> Remove Reminder</button>
                 </div>
-                <div class="col-md-4">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                            60%
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <section class="stage">
-                    <div class="move">
-                        <figure ng-repeat="todo in todos" class="ball bubble">{{todo.ItemText}}<span class="shadow"></span></figure>
-                    </div>
-                </section>
             </div>
         </div>
     </div>
