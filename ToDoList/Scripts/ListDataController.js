@@ -1,4 +1,4 @@
-﻿angular.module('ToDoList').controller('ListDataController',
+﻿ var ToDoList = angular.module('ToDoList').controller('ListDataController',
     function InitTodo($scope, ItemService) {
         $scope.ListItems = null;
         ItemService.GetListItems().then(function (d) {
@@ -44,7 +44,7 @@ ToDoList.controller('ListDataController', ['$scope', '$http', function TodoCtrl(
                 $scope.newNum /= 2;
             }           
         }
-        return $scope.newNum;
+        return Math.floor((Math.random() * $scope.newNum )* 2);
         
         //return $scope.randBubbles = Math.floor((Math.random() * 8) + 1);
 
