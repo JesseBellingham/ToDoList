@@ -9,11 +9,6 @@
 
     })
 
-
-
-
-
-
 ToDoList.factory('ItemService', function ($http) {
     var factory = {};
     factory.GetListItems = function () {
@@ -44,7 +39,7 @@ ToDoList.controller('ListDataController', ['$scope', '$http', function TodoCtrl(
                 $scope.newNum /= 2;
             }           
         }
-        return $scope.newNum;
+        return Math.floor((Math.random() * $scope.newNum) * 2);
         
         //return $scope.randBubbles = Math.floor((Math.random() * 8) + 1);
 
@@ -55,7 +50,7 @@ ToDoList.controller('ListDataController', ['$scope', '$http', function TodoCtrl(
         }
 
         return 0;*/
-    };
+    }
 
     $scope.RemoveTask = function (Id) {
         $scope.todos.DeleteTodo(Id);

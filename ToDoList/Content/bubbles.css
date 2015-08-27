@@ -1250,14 +1250,3 @@
 	}
 }
 /*end of bubble animations*/
-/*table*/
-.table{
-	background-color: #282320;
-	border-bottom: 22px double #433A32;
-	box-shadow: 0 11px 60px #060505 inset;
-	-moz-box-shadow: 0 11px 60px #060505 inset;
-	-webkit-box-shadow: 0 11px 60px #060505 inset;
-	-o-box-shadow: 0 11px 60px #060505 inset;
-	-ms-box-shadow: 0 11px 60px #060505 inset;
-	height: 140px;
-	margin-top: -180px;
