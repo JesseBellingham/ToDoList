@@ -3,10 +3,9 @@
 }
 
 <head>
-    <!--<link rel="stylesheet" type="text/css" href="~/Content/ball.css" />-->
     <link rel="stylesheet" type="text/css" href="~/Content/bubbles.css" />
 </head>
-<div ng-controller="ListDataController">
+<div ng-controller="ToDoListController">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -20,11 +19,12 @@
                     <p>New task: </p>
                     <input ng-model="newTaskText">
                     <button class="btn" ng-click="AddTodo()"><span class="glyphicon glyphicon-plus"></span> Add</button><br />
-                    <p>Importance: </p>
                 </form>
             </div>
             <div class="col-md-4">                
                 <div class="bubble_wrap">
+                    <!-- CSS class assignment is bound to the DB Id number of the todo,
+                        I couldn't think of a better way to do it at the time -->
                     <div ng-repeat="todo in todos" class="bubbles b{{ RandomizeBubbles(todo.Id) }} completed-{{todo.ItemDone}}">{{todo.ItemText}}</div>
                 </div>
                 <div class="spacer">
@@ -38,5 +38,5 @@
 </div>
 
 @section scripts{
-    <script src="~/Scripts/ListDataController.js"></script>
+    <script src="~/Scripts/ToDoList.js"></script>
 }
